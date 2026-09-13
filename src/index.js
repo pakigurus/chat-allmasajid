@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { chatbot } from '../chatbot/index.js';
 
 dotenv.config();
 
@@ -10,10 +11,18 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Routes (to be built by Claude Code)
-app.post('/api/chat', (req, res) => {
-  const { message } = req.body;
-  res.json({ reply: "Chatbot response — coming soon (Claude Code execution)" });
+app.post('/api/chat', async (req, res) => {
+  const { message, history } = req.body;
+  if (!message) {
+    return res.status(400).json({ error: 'message is required' });
+  }
+  try {
+    const reply = await chatbot.handle(message, history);
+    res.json({ reply });
+  } catch (err) {
+    console.error('chatbot.handle failed:', err);
+    res.status(502).json({ error: 'Chat service unavailable' });
+  }
 });
 
 app.listen(PORT, () => {
