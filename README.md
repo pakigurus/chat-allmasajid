@@ -12,6 +12,40 @@ npm install
 npm run dev
 ```
 
+## Setup Prerequisites (Before Running)
+
+### 1. Anthropic API Key
+```bash
+# Add to .env:
+ANTHROPIC_API_KEY=sk-<your-key-here>
+```
+Get key from: https://console.anthropic.com/keys
+
+### 2. Ingest Knowledge Base
+```bash
+npm run ingest
+```
+This embeds CAP-001 into knowledge_vectors table. Chat will fail until this runs.
+
+### 3. SendGrid + Twilio (Optional, for production)
+```bash
+# Add to .env:
+SENDGRID_API_KEY=<key>
+SENDGRID_FROM_EMAIL=support@allmasajid.com
+TWILIO_ACCOUNT_SID=<sid>
+TWILIO_AUTH_TOKEN=<token>
+TWILIO_PHONE_NUMBER=+1234567890
+```
+Dev mode uses console logging if keys missing.
+
+### 4. Start & Test
+```bash
+npm start
+# Server runs on http://localhost:3000
+# /api/chat — Claude-powered chat (needs API key)
+# /api/leads — Capture unhandled queries (works immediately)
+```
+
 ## Architecture
 
 - **Frontend**: Next.js + React
