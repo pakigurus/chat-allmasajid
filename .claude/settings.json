@@ -1,31 +1,47 @@
 {
-  "name": "chat-allmasajid-claude",
-  "description": "Chat.allMasajid.com — Claude Code project (C4 namespace). DO NOT SHARE WITH CODEX/CHATGPT.",
-  "model": "sonnet-4-6",
-  "temperature": 0.3,
-  "max_tokens": 8000,
-  "tools": {
-    "bash": true,
-    "powershell": true,
-    "webSearch": true,
-    "webFetch": true
-  },
-  "allowRules": [
-    "PowerShell",
-    "Bash",
-    "WebSearch",
-    "WebFetch"
-  ],
-  "denyRules": [
-    "GitPush",
-    "GitMerge",
-    "ServerWrite",
-    "SendEmail",
-    "SendSMS"
-  ],
-  "systemSeparation": {
-    "note": "This is Claude Code (C4) only. ChatGPT/Codex has separate workspace.",
-    "codexWorkspace": "NOT IN THIS PROJECT",
-    "neverMix": true
+  "model": "haiku",
+  "permissions": {
+    "allow": [
+      "PowerShell",
+      "Bash",
+      "WebSearch",
+      "WebFetch",
+      "WebFetch(domain:claude.ai)",
+      "Skill(claude-api)",
+      "Skill(claude-api:*)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Write(C:\\Users\\fouad\\Dropbox\\00_Ai\\Claude\\chat-allmasajid\\**)",
+      "Edit(C:\\Users\\fouad\\Dropbox\\00_Ai\\Claude\\chat-allmasajid\\**)",
+      "Write(C:\\Users\\fouad\\.claude\\skills\\**)",
+      "Edit(C:\\Users\\fouad\\.claude\\skills\\**)",
+      "Write(C:\\Users\\fouad\\.claude\\projects\\c--chat-allmasajid\\memory\\**)",
+      "Edit(C:\\Users\\fouad\\.claude\\projects\\c--chat-allmasajid\\memory\\**)",
+      "Write(C:\\Users\\fouad\\.claude\\*.md)",
+      "Edit(C:\\Users\\fouad\\.claude\\*.md)",
+      "Write(C:\\Users\\fouad\\AppData\\Local\\Temp\\claude\\c--chat-allmasajid\\**)",
+      "Edit(C:\\Users\\fouad\\AppData\\Local\\Temp\\claude\\c--chat-allmasajid\\**)",
+      "Read(C:\\Users\\fouad\\AppData\\Local\\Temp\\claude\\c--chat-allmasajid\\**)",
+      "Read(//tmp/**)",
+      "Bash(cat >> *)",
+      "mcp__claude_ai_Gmail__search_threads",
+      "mcp__claude_ai_Gmail__get_thread",
+      "mcp__claude_ai_Gmail__get_message",
+      "mcp__claude_ai_Google_Drive__search_files"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(git push --force:*)",
+      "Bash(git push -f:*)",
+      "PowerShell(Remove-Item -Recurse -Force:*)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\fouad\\.claude",
+      "C:\\Users\\fouad\\Dropbox\\00_Ai\\Claude\\chat-allmasajid",
+      "C:\\Users\\fouad\\AppData\\Local\\Temp\\claude\\c--chat-allmasajid",
+      "C:\\Users\\fouad\\Dropbox\\00_Ai\\Claude",
+      "C:\\Users\\fouad\\.claude\\projects\\c--chat-allmasajid\\memory",
+      "C:\\Users\\fouad\\.claude\\hooks"
+    ]
   }
 }
