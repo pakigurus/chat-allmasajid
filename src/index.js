@@ -55,6 +55,11 @@ app.use((req, res, next) => {
 app.use(analyticsRouter);
 app.use(badgesRouter);
 
+// Health check for Docker HEALTHCHECK
+app.get('/health', (req, res) => {
+  res.json({ ok: true, ts: Date.now() });
+});
+
 app.post('/api/chat', async (req, res) => {
   const { message, history } = req.body;
   if (!message) {
