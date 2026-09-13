@@ -1,0 +1,31 @@
+{
+  "name": "chat-allmasajid-claude",
+  "description": "Chat.allMasajid.com — Claude Code project (C4 namespace). DO NOT SHARE WITH CODEX/CHATGPT.",
+  "model": "sonnet-4-6",
+  "temperature": 0.3,
+  "max_tokens": 8000,
+  "tools": {
+    "bash": true,
+    "powershell": true,
+    "webSearch": true,
+    "webFetch": true
+  },
+  "allowRules": [
+    "PowerShell",
+    "Bash",
+    "WebSearch",
+    "WebFetch"
+  ],
+  "denyRules": [
+    "GitPush",
+    "GitMerge",
+    "ServerWrite",
+    "SendEmail",
+    "SendSMS"
+  ],
+  "systemSeparation": {
+    "note": "This is Claude Code (C4) only. ChatGPT/Codex has separate workspace.",
+    "codexWorkspace": "NOT IN THIS PROJECT",
+    "neverMix": true
+  }
+}

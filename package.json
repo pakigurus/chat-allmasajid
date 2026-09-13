@@ -1,0 +1,29 @@
+{
+  "name": "chat-allmasajid-claude",
+  "version": "0.1.0",
+  "description": "Public chatbot for allMasajid visitors — Claude Code (C4) project",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.js",
+    "start": "node src/index.js",
+    "build": "echo 'Build step (future: Next.js/TypeScript compilation)'",
+    "setup": "node scripts/setup-db.js",
+    "test": "node --test tests/**/*.test.js",
+    "lint": "echo 'Linter to be added'"
+  },
+  "keywords": ["chatbot", "allmasajid", "masjid", "directory", "claude-code"],
+  "author": "PakiGurusPvtLtd — Claude Code (C4)",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "pg": "^8.11.3",
+    "axios": "^1.6.2",
+    "@anthropic-ai/sdk": "^0.27.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
