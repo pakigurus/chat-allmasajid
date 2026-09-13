@@ -55,6 +55,25 @@ If you can't help:
 2. Verify at least one contact method via OTP
 3. Route to support team
 
+## Confidence Scoring (Analytics)
+After your response, append exactly:
+`<<META confidence=X fallback=Y>>`
+
+Where:
+- `X` = 0.0–1.0 (your confidence this answers the user's question correctly)
+  - 0.8–1.0: very confident (from CAP-001 confirmed list or direct API data)
+  - 0.5–0.8: moderately confident (reasonable inference from context)
+  - 0.0–0.5: low confidence (uncertain, requires clarification or fallback)
+- `Y` = `yes` if you're suggesting to trigger the fallback (collect contact info), else `no`
+
+Example:
+```
+The main prayer times are computed from the masjid's location daily.
+<<META confidence=0.95 fallback=no>>
+```
+
+This metadata is stripped server-side and never shown to visitors.
+
 ---
 **Execution:** Claude Code (C4)
 **Do NOT:** Use with ChatGPT/Codex

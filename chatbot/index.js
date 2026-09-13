@@ -29,6 +29,23 @@ async function buildSystemPrompt(message) {
   return `${SYSTEM_PROMPT}\n\n## Retrieved knowledge for this question\n${context}`;
 }
 
+function stripMetaTag(text) {
+  const metaRegex = /<<META confidence=([\d.]+) fallback=(yes|no)>>$/;
+  const match = text.match(metaRegex);
+  if (match) {
+    return {
+      text: text.replace(metaRegex, '').trim(),
+      confidence: parseFloat(match[1]),
+      isFallback: match[2] === 'yes'
+    };
+  }
+  return {
+    text,
+    confidence: 0.5,
+    isFallback: false
+  };
+}
+
 export const chatbot = {
   init: () => console.log('Chatbot initialized by Claude Code'),
   handle: async (message, history = []) => {
@@ -39,6 +56,18 @@ export const chatbot = {
       system,
       messages: [...history, { role: 'user', content: message }],
     });
-    return response.content[0]?.text ?? '';
+
+    const rawText = response.content[0]?.text ?? '';
+    const { text, confidence, isFallback } = stripMetaTag(rawText);
+
+    return {
+      reply: text,
+      confidence,
+      isFallback,
+      usage: {
+        input_tokens: response.usage?.input_tokens ?? 0,
+        output_tokens: response.usage?.output_tokens ?? 0
+      }
+    };
   },
 };
