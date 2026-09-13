@@ -1,8 +1,6 @@
 -- chat.allmasajid.com — database schema (Claude Code)
 -- Applied by scripts/setup-db.js via `npm run setup`
 
-CREATE EXTENSION IF NOT EXISTS vector;
-
 CREATE TABLE IF NOT EXISTS chats (
   id SERIAL PRIMARY KEY,
   session_id UUID NOT NULL,
@@ -17,7 +15,7 @@ CREATE TABLE IF NOT EXISTS knowledge_vectors (
   source VARCHAR(255) NOT NULL,
   chunk_index INT NOT NULL,
   content TEXT NOT NULL,
-  embedding VECTOR(1024) NOT NULL,
+  embedding jsonb,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (source, chunk_index)
 );
