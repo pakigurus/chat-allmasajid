@@ -37,6 +37,9 @@ app.use(cors({
 
 app.use(express.json());
 
+// Serve static files from public directory
+app.use(express.static('public'));
+
 // CSP header for iframe embedding
 app.use((req, res, next) => {
   res.set('Content-Security-Policy', "frame-ancestors 'self' https://www.allmasajid.com https://allmasajid.com https://stage.allmasajid.com");
@@ -228,7 +231,7 @@ app.get('/embed', (req, res) => {
     sendBtn.addEventListener('click', sendMessage);
     input.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage());
 
-    addMessage('Hello! How can I help you today?', false);
+    addMessage('Wa alaikum assalamu wa rahmatullahi wa barakatuh! How can I assist you today?', false);
   </script>
 </body>
 </html>
