@@ -231,7 +231,7 @@ app.get('/embed', (req, res) => {
     sendBtn.addEventListener('click', sendMessage);
     input.addEventListener('keypress', (e) => e.key === 'Enter' && sendMessage());
 
-    addMessage('Wa alaikum assalamu wa rahmatullahi wa barakatuh! How can I assist you today?', false);
+    addMessage('Assalamu wa rahmatullahi wa barakatuh! How can I assist you today?', false);
   </script>
 </body>
 </html>
