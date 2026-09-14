@@ -1,5 +1,9 @@
 (function() {
-  const WIDGET_URL = 'https://chat.allmasajid.com';
+  // Auto-detect chat server based on WordPress site domain
+  const siteDomain = window.location.hostname;
+  const WIDGET_URL = siteDomain.includes('stage')
+    ? 'https://stage.chat.allmasajid.com'
+    : 'https://chat.allmasajid.com';
   const EMBED_URL = WIDGET_URL + '/embed';
 
   function injectWidget() {
